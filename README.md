@@ -26,9 +26,14 @@ Then open http://localhost:8000.
 
 Hosted on Cloudflare Workers (static assets) at https://marcuswalton.dev, with www.marcuswalton.dev redirecting there.
 
+Pushing to `main` on GitHub deploys automatically (Cloudflare Workers Builds):
+
 ```sh
-npx wrangler deploy
+git add -A && git commit -m "describe the change"
+git push
 ```
+
+Build logs are on the Worker's **Deployments** page in the Cloudflare dashboard. To deploy by hand instead, run `npx wrangler deploy`.
 
 ## Making it yours
 
