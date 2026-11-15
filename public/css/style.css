@@ -156,14 +156,23 @@ img { max-width: 100%; display: block; }
 
 /* About */
 .about { display: grid; gap: 40px; align-items: start; }
-@media (min-width: 820px) { .about { grid-template-columns: 300px 1fr; gap: 64px; } }
-.about-photo {
-  aspect-ratio: 4 / 5; width: 100%; max-width: 300px; border-radius: var(--radius); object-fit: cover;
-  display: grid; place-items: center;
-  font-family: var(--font-serif); font-size: 4rem; color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
-  border: 1px solid var(--border);
+@media (min-width: 820px) { .about { grid-template-columns: 1fr 280px; gap: 64px; } }
+.glance {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; position: relative; overflow: hidden;
 }
+.glance::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 4px;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 30%, #22a861));
+}
+.glance-title {
+  margin: 0 0 16px; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+}
+.glance dl { margin: 0; display: grid; gap: 16px; }
+.glance dt { font-size: .8rem; color: var(--muted); }
+.glance dd { margin: 2px 0 0; font-weight: 600; line-height: 1.4; }
+.glance-link { display: inline-block; margin-top: 20px; font-weight: 600; text-decoration: none; font-size: .95rem; }
+.glance-link:hover { text-decoration: underline; }
 .about p { max-width: 62ch; }
 .skills-title { font-size: 1rem; margin: 32px 0 12px; }
 
@@ -232,3 +241,11 @@ img { max-width: 100%; display: block; }
 .points li { margin: 2px 0; }
 .subhead { font-family: var(--font-serif); font-weight: 600; font-size: 1.4rem; margin: 48px 0 16px; }
 .timeline + .text-link { display: inline-block; }
+
+/* 404 page */
+.not-found { padding-top: 120px; padding-bottom: 120px; }
+.not-found .code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color: var(--accent); font-weight: 600; margin: 0 0 8px;
+}
+.not-found h1 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(2.2rem, 6vw, 3.6rem); margin: 0 0 16px; }

@@ -32,9 +32,8 @@ npx wrangler deploy
 
 ## Making it yours
 
-Still to do:
+Notes:
 
-- **Photo**: replace the `MW` box in `public/index.html` with `<img class="about-photo" src="assets/me.jpg" alt="Portrait of Marcus Walton">`
 - **CV**: when it changes, export a new PDF to `public/assets/Marcus-Walton-CV.pdf`
 
 Colors and fonts are CSS variables at the top of `public/css/style.css`.
