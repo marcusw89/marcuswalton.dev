@@ -1,0 +1,40 @@
+# Portfolio
+
+A personal portfolio site in plain HTML/CSS/JS, with no build step or dependencies.
+
+## Structure
+
+```
+src/index.js            Worker: redirects www to the main domain, serves public/
+wrangler.jsonc          Cloudflare config (domains, assets)
+public/                 Everything that gets published
+  index.html            The page
+  css/style.css         Styles (light/dark theme via CSS variables)
+  js/main.js            Mobile nav, project filters, scroll effects
+  assets/               Photo, CV, project images
+```
+
+## Run locally
+
+```sh
+python3 -m http.server 8000 -d public
+```
+
+Then open http://localhost:8000.
+
+## Deploy
+
+Hosted on Cloudflare Workers (static assets) at https://marcuswalton.dev, with www.marcuswalton.dev redirecting there.
+
+```sh
+npx wrangler deploy
+```
+
+## Making it yours
+
+Still to do:
+
+- **Photo**: replace the `MW` box in `public/index.html` with `<img class="about-photo" src="assets/me.jpg" alt="Portrait of Marcus Walton">`
+- **CV**: when it changes, export a new PDF to `public/assets/Marcus-Walton-CV.pdf`
+
+Colors and fonts are CSS variables at the top of `public/css/style.css`.
