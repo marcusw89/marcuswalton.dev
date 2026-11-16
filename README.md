@@ -5,7 +5,7 @@ A personal portfolio site in plain HTML/CSS/JS, with no build step or dependenci
 ## Structure
 
 ```
-src/index.js                  Worker: redirects www to the main domain, adds security headers and analytics, serves public/
+src/index.js                  Worker: redirects www and .co.uk to the main domain, adds security headers and analytics, serves public/
 wrangler.jsonc                Cloudflare config (domains, assets, analytics token)
 public/                       Everything that gets published
   index.html                  The page
@@ -30,7 +30,7 @@ For a quick look at the static files only: `python3 -m http.server 8000 -d publi
 
 ## Deploy
 
-Hosted on Cloudflare Workers (static assets) at https://marcuswalton.dev, with www.marcuswalton.dev redirecting there.
+Hosted on Cloudflare Workers (static assets) at https://marcuswalton.dev, with www.marcuswalton.dev, marcuswalton.co.uk and www.marcuswalton.co.uk redirecting there (paths are kept).
 
 Pushing to `main` on GitHub deploys automatically (Cloudflare Workers Builds):
 

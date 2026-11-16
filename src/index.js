@@ -1,5 +1,12 @@
-// Redirect www.marcuswalton.dev to marcuswalton.dev; serve static files with security headers for everything else.
+// Redirect www and the .co.uk domains to marcuswalton.dev; serve static files with security headers for everything else.
 // If CF_ANALYTICS_TOKEN is set in wrangler.jsonc, the Cloudflare Web Analytics beacon is added to every HTML page.
+
+const CANONICAL_HOST = "marcuswalton.dev";
+const REDIRECT_HOSTS = new Set([
+  "www.marcuswalton.dev",
+  "marcuswalton.co.uk",
+  "www.marcuswalton.co.uk",
+]);
 
 const SECURITY_HEADERS = {
   "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
@@ -39,8 +46,11 @@ function addAnalytics(response, token) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    if (url.hostname === "www.marcuswalton.dev") {
-      url.hostname = "marcuswalton.dev";
+    if (REDIRECT_HOSTS.has(url.hostname)) {
+      // Keep the path and query, so marcuswalton.co.uk/work/x lands on marcuswalton.dev/work/x.
+      url.protocol = "https:";
+      url.hostname = CANONICAL_HOST;
+      url.port = "";
       return Response.redirect(url.toString(), 301);
     }
 
