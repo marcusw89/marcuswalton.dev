@@ -21,11 +21,29 @@
   <meta property="og:image:alt" content="Marcus Walton, Technical Support &amp; Infrastructure Engineer">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marcus Walton",
+    "url": "https://marcuswalton.dev/",
+    "image": "https://marcuswalton.dev/og.png",
+    "jobTitle": "Technical Support Engineer",
+    "worksFor": { "@type": "Organization", "name": "iomart" },
+    "address": { "@type": "PostalAddress", "addressRegion": "Hampshire", "addressCountry": "GB" },
+    "email": "mailto:marcus@marcuswalton.dev",
+    "knowsAbout": ["Linux system administration", "Platform migrations", "Server infrastructure", "OnApp", "Backup and disaster recovery"],
+    "sameAs": [
+      "https://www.linkedin.com/in/marcuswalton1/",
+      "https://github.com/marcusw89"
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -46,7 +64,7 @@
   <main id="main">
     <!-- Hero -->
     <section id="top" class="hero container">
-      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Technical Support Engineer at iomart</p>
+      <p class="eyebrow">Technical Support Engineer at iomart</p>
       <h1>I keep infrastructure <em>running</em> and move it forward.</h1>
       <p class="lede">I'm Marcus Walton, a UK-based technical support engineer and system administrator. I manage Linux server infrastructure across cloud and on-premise environments, and I've led platform migrations, server builds and upgrades.</p>
       <div class="hero-actions">
@@ -68,17 +86,17 @@
         </div>
       </div>
 
-      <!-- Each card is a template: swap in the real details (scale, tools, outcome).
-           To add a diagram or screenshot, replace the .thumb div with:
+      <!-- To add a diagram or screenshot, replace a card's .thumb div with:
            <img class="thumb" src="assets/project-1.png" alt="Description of the image"> -->
       <div class="projects">
         <article class="project" data-category="migration">
           <div class="thumb thumb-icon" style="--h1: 225; --h2: 265;" aria-hidden="true">⇄</div>
           <div class="project-body">
-            <h3>Memset VPS integration</h3>
+            <h3>Memset VPS migration to OnApp</h3>
             <p class="stat"><strong>~1,100</strong> virtual servers migrated</p>
-            <p>Led the integration of Memset's VPS platform into iomart's systems: a full platform migration of around 1,100 virtual servers, covering planning, moving workloads and customers across, and validating everything on the other side.</p>
-            <ul class="tags"><li>Platform migration</li><li>VPS</li><li>Linux</li></ul>
+            <p>Led the move of Memset's VPS estate off its in-house hosting platform and onto OnApp, as part of integrating Memset into iomart. Around 1,100 customer virtual servers were planned, moved in batches and validated on the new platform.</p>
+            <ul class="tags"><li>Platform migration</li><li>OnApp</li><li>VPS</li><li>Linux</li></ul>
+            <p class="project-links"><a href="/work/memset-migration">Read the case study</a></p>
           </div>
         </article>
 
@@ -94,8 +112,9 @@
         <article class="project" data-category="linux">
           <div class="thumb thumb-icon" style="--h1: 40; --h2: 70;" aria-hidden="true">&gt;_</div>
           <div class="project-body">
-            <h3>Linux server administration</h3>
-            <p>Managing Linux-based server infrastructure day to day: system diagnostics, performance tuning, monitoring and scripting routine work to cut downtime.</p>
+            <h3>Linux support &amp; administration</h3>
+            <p class="stat"><strong>99.99%</strong> uptime across 3,000+ customers</p>
+            <p>One of a two-person team supporting over 3,000 customers on Linux-based infrastructure: diagnostics, performance tuning, monitoring and scripting routine work. Ticket times have improved by 20% since I joined.</p>
             <ul class="tags"><li>CentOS</li><li>Ubuntu</li><li>Debian</li><li>Bash</li><li>Zabbix</li><li>Nagios</li></ul>
           </div>
         </article>
@@ -115,7 +134,7 @@
     <section id="about" class="section container about">
       <div>
         <h2>About me</h2>
-        <p>I'm a system administrator at heart, working as a technical support engineer at iomart since 2021. I manage Linux server infrastructure, diagnose and tune systems, and led the integration of Memset's VPS platform into iomart, migrating around 1,100 virtual servers.</p>
+        <p>I'm a system administrator at heart, working as a technical support engineer at iomart since 2021. In a two-person team I support over 3,000 customers, keep the platform at 99.99% uptime, and have helped bring ticket times down by 20%. I also led the migration of Memset's VPS platform onto OnApp, moving around 1,100 virtual servers.</p>
         <p>Before that I spent five years as a freelance IT consultant, designing secure networks, running VPNs and firewalls, and building backup and disaster recovery plans for clients. I care about uptime, security and automating the repetitive parts of the job.</p>
         <h3 class="skills-title">Skills</h3>
         <dl class="skill-groups">
@@ -132,7 +151,7 @@
         <dl>
           <div><dt>Based in</dt><dd>Hampshire, UK</dd></div>
           <div><dt>Currently</dt><dd>Technical Support Engineer at iomart</dd></div>
-          <div><dt>In IT since</dt><dd>2016 (10 years)</dd></div>
+          <div><dt>In IT since</dt><dd>2016 (<span data-years-since="2016">10</span> years)</dd></div>
           <div><dt>Focus</dt><dd>Linux, migrations, infrastructure</dd></div>
         </dl>
         <a href="assets/Marcus-Walton-CV.pdf" class="glance-link" download>Download CV →</a>
@@ -148,9 +167,10 @@
           <div>
             <h3>Technical Support Engineer, iomart</h3>
             <ul class="points">
-              <li>Manage Linux-based server infrastructure.</li>
-              <li>System diagnostics and performance tuning.</li>
-              <li>Led the integration of Memset's VPS platform into iomart systems, migrating around 1,100 virtual servers.</li>
+              <li>Support over 3,000 customers as one of a two-person team.</li>
+              <li>Manage Linux-based server infrastructure at 99.99% uptime.</li>
+              <li>Improved ticket times by 20% through diagnostics, performance tuning and process work.</li>
+              <li>Led the migration of Memset's VPS platform from its in-house hosting onto OnApp, moving around 1,100 virtual servers.</li>
             </ul>
           </div>
         </li>
@@ -193,8 +213,8 @@
       <p class="lede">Open to conversations about infrastructure, Linux and support engineering roles.</p>
       <a href="mailto:marcus@marcuswalton.dev" class="button">marcus@marcuswalton.dev</a>
       <ul class="socials">
-        <li><a href="https://www.linkedin.com/in/marcuswalton1/" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://github.com/marcusw89" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/marcuswalton1/" rel="me">LinkedIn</a></li>
+        <li><a href="https://github.com/marcusw89" rel="me">GitHub</a></li>
       </ul>
     </section>
   </main>

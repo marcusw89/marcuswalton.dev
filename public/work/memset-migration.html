@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Migrating ~1,100 VPSs to OnApp — Marcus Walton</title>
+  <meta name="description" content="Case study: moving Memset's VPS estate of around 1,100 virtual servers from its in-house hosting platform onto OnApp, as part of the iomart integration.">
+  <link rel="canonical" href="https://marcuswalton.dev/work/memset-migration">
+  <meta name="theme-color" content="#3b4fe0">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://marcuswalton.dev/work/memset-migration">
+  <meta property="og:title" content="Migrating ~1,100 VPSs to OnApp">
+  <meta property="og:description" content="Moving Memset's VPS estate from in-house hosting onto OnApp, as part of the iomart integration.">
+  <meta property="og:image" content="https://marcuswalton.dev/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="/" class="logo">Marcus Walton</a>
+      <a href="/#work" class="back-link">← All work</a>
+    </div>
+  </header>
+
+  <main id="main" class="container case-study">
+    <p class="eyebrow">Case study · iomart</p>
+    <h1>Migrating ~1,100 virtual servers onto OnApp</h1>
+    <p class="lede">When iomart brought Memset into the group, Memset's VPS customers were still running on Memset's own in-house hosting platform. I led the work to move that estate onto OnApp so it could be run alongside the rest of iomart's infrastructure.</p>
+
+    <dl class="case-facts">
+      <div><dt>Scale</dt><dd>~1,100 virtual servers</dd></div>
+      <div><dt>From</dt><dd>Memset's in-house VPS platform</dd></div>
+      <div><dt>To</dt><dd>OnApp</dd></div>
+      <div><dt>My role</dt><dd>Led the migration</dd></div>
+    </dl>
+
+    <h2>The problem</h2>
+    <p>Running a separate, home-grown hosting platform for one part of the business meant separate tooling, separate processes and separate knowledge to keep it alive. Moving it onto OnApp, a standard cloud management platform, put those servers on the same footing as the rest of the estate and made them easier to support long term.</p>
+    <p>The hard part was that these were live customer servers. Every one of them belonged to someone who expected it to keep working, and the migration had to happen without turning into 1,100 support tickets.</p>
+
+    <h2>The approach</h2>
+    <ul class="points">
+      <li><strong>Inventory first.</strong> Catalogued the existing estate: which servers existed, what they ran, which customers owned them, and which ones needed special handling.</li>
+      <li><strong>Prove the process on a small batch.</strong> Migrated a first group to shake out problems with the procedure before scaling it up.</li>
+      <li><strong>Move in planned batches.</strong> Worked through the estate in scheduled windows rather than all at once, so any issue stayed small and contained.</li>
+      <li><strong>Keep customers informed.</strong> Customers were told what was happening and when, so a migration window never came as a surprise.</li>
+      <li><strong>Validate on the other side.</strong> Checked each server after the move (booting, networking, services and data) before treating it as done.</li>
+    </ul>
+
+    <h2>The result</h2>
+    <p>Around 1,100 customer virtual servers were moved off the legacy platform and onto OnApp, bringing Memset's VPS customers into iomart's systems and leaving one fewer bespoke platform to maintain.</p>
+
+    <h2>What I took from it</h2>
+    <p>Large migrations are mostly planning, communication and checking, with the actual data movement being the easy part. A repeatable, tested procedure is what makes the thousandth server as uneventful as the tenth.</p>
+
+    <p class="case-cta"><a href="/#contact" class="button">Get in touch</a> <a href="/" class="button button-ghost">Back to the homepage</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Marcus Walton</span>
+      <a href="#main">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
