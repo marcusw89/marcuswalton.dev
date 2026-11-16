@@ -36,7 +36,6 @@
     "jobTitle": "Technical Support Engineer",
     "worksFor": { "@type": "Organization", "name": "iomart" },
     "address": { "@type": "PostalAddress", "addressRegion": "Hampshire", "addressCountry": "GB" },
-    "email": "mailto:marcus@marcuswalton.dev",
     "knowsAbout": ["Linux system administration", "Platform migrations", "Server infrastructure", "OnApp", "Backup and disaster recovery"],
     "sameAs": [
       "https://www.linkedin.com/in/marcuswalton1/",
@@ -75,22 +74,33 @@
 
     <!-- Work -->
     <section id="work" class="section container">
-      <div class="section-head">
-        <h2>Selected work</h2>
-        <div class="filters" role="group" aria-label="Filter projects">
-          <button class="filter is-active" data-filter="all" aria-pressed="true">All</button>
-          <button class="filter" data-filter="migration" aria-pressed="false">Migrations</button>
-          <button class="filter" data-filter="servers" aria-pressed="false">Servers</button>
-          <button class="filter" data-filter="linux" aria-pressed="false">Linux</button>
-          <button class="filter" data-filter="infra" aria-pressed="false">Infrastructure</button>
-        </div>
-      </div>
+      <h2>Selected work</h2>
 
       <!-- To add a diagram or screenshot, replace a card's .thumb div with:
            <img class="thumb" src="assets/project-1.png" alt="Description of the image"> -->
       <div class="projects">
-        <article class="project" data-category="migration">
-          <div class="thumb thumb-icon" style="--h1: 225; --h2: 265;" aria-hidden="true">⇄</div>
+        <article class="project">
+          <div class="thumb thumb-diagram" style="--h1: 225; --h2: 265;">
+            <svg viewBox="0 0 320 200" role="img" aria-label="Diagram: around 1,100 virtual servers moved from Memset's in-house platform to OnApp">
+              <g class="box">
+                <rect x="16" y="52" width="104" height="96" rx="10"/>
+                <rect x="200" y="52" width="104" height="96" rx="10"/>
+              </g>
+              <g class="vm">
+                <rect x="34" y="92" width="14" height="10" rx="2"/><rect x="54" y="92" width="14" height="10" rx="2"/><rect x="74" y="92" width="14" height="10" rx="2"/>
+                <rect x="34" y="108" width="14" height="10" rx="2"/><rect x="54" y="108" width="14" height="10" rx="2"/><rect x="74" y="108" width="14" height="10" rx="2"/>
+                <rect x="218" y="92" width="14" height="10" rx="2"/><rect x="238" y="92" width="14" height="10" rx="2"/><rect x="258" y="92" width="14" height="10" rx="2"/>
+                <rect x="218" y="108" width="14" height="10" rx="2"/><rect x="238" y="108" width="14" height="10" rx="2"/><rect x="258" y="108" width="14" height="10" rx="2"/>
+              </g>
+              <text class="label" x="68" y="78" text-anchor="middle">Memset</text>
+              <text class="sub" x="68" y="136" text-anchor="middle">in-house platform</text>
+              <text class="label" x="252" y="78" text-anchor="middle">OnApp</text>
+              <text class="sub" x="252" y="136" text-anchor="middle">iomart</text>
+              <path class="arrow" d="M130 100 H188 M180 92 L190 100 L180 108"/>
+              <text class="count" x="160" y="88" text-anchor="middle">~1,100</text>
+              <text class="sub light" x="160" y="122" text-anchor="middle">VPSs</text>
+            </svg>
+          </div>
           <div class="project-body">
             <h3>Memset VPS migration to OnApp</h3>
             <p class="stat"><strong>~1,100</strong> virtual servers migrated</p>
@@ -100,7 +110,7 @@
           </div>
         </article>
 
-        <article class="project" data-category="servers">
+        <article class="project">
           <div class="thumb thumb-icon" style="--h1: 155; --h2: 195;" aria-hidden="true">▤</div>
           <div class="project-body">
             <h3>Server builds &amp; upgrades</h3>
@@ -109,7 +119,7 @@
           </div>
         </article>
 
-        <article class="project" data-category="linux">
+        <article class="project">
           <div class="thumb thumb-icon" style="--h1: 40; --h2: 70;" aria-hidden="true">&gt;_</div>
           <div class="project-body">
             <h3>Linux support &amp; administration</h3>
@@ -119,12 +129,22 @@
           </div>
         </article>
 
-        <article class="project" data-category="infra">
+        <article class="project">
           <div class="thumb thumb-icon" style="--h1: 15; --h2: 340;" aria-hidden="true">◇</div>
           <div class="project-body">
             <h3>Secure networks &amp; disaster recovery</h3>
             <p>As a freelance IT consultant, designed and built secure networks for clients, deployed and maintained VPNs and firewalls, and set up custom backup and disaster recovery plans.</p>
             <ul class="tags"><li>VPN</li><li>Firewalls</li><li>LAN/WAN</li><li>Backup &amp; DR</li></ul>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="thumb thumb-icon" style="--h1: 190; --h2: 230;" aria-hidden="true">{ }</div>
+          <div class="project-body">
+            <h3>How this site runs</h3>
+            <p>This site is plain HTML, CSS and JavaScript with no build step, served from Cloudflare's edge by a small Worker. The Worker redirects www to the main domain and adds security headers (a strict Content-Security-Policy, HSTS, nosniff) to every response. Pushing to GitHub deploys it automatically, and a scheduled GitHub Actions job checks every 30 minutes that the site is up. Fonts are self-hosted and nothing on the site sets cookies.</p>
+            <ul class="tags"><li>Cloudflare Workers</li><li>GitHub Actions</li><li>CSP &amp; HSTS</li><li>No build step</li></ul>
+            <p class="project-links"><a href="https://github.com/marcusw89/marcuswalton.dev">View the source</a></p>
           </div>
         </article>
       </div>
@@ -211,7 +231,7 @@
     <section id="contact" class="section container contact">
       <h2>Let's talk</h2>
       <p class="lede">Open to conversations about infrastructure, Linux and support engineering roles.</p>
-      <a href="mailto:marcus@marcuswalton.dev" class="button">marcus@marcuswalton.dev</a>
+      <a class="button js-email" data-user="marcus" data-domain="marcuswalton.dev">marcus [at] marcuswalton [dot] dev</a>
       <ul class="socials">
         <li><a href="https://www.linkedin.com/in/marcuswalton1/" rel="me">LinkedIn</a></li>
         <li><a href="https://github.com/marcusw89" rel="me">GitHub</a></li>

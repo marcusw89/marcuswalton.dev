@@ -10,6 +10,11 @@
     // Run the Worker before serving files so www requests can be redirected.
     "run_worker_first": true
   },
+  "vars": {
+    // Cloudflare Web Analytics site token (dashboard > Analytics & Logs > Web Analytics).
+    // Leave empty to turn analytics off.
+    "CF_ANALYTICS_TOKEN": "8d2b3be65cbb43f88304886cadf68fbe"
+  },
   "routes": [
     { "pattern": "marcuswalton.dev", "custom_domain": true },
     { "pattern": "www.marcuswalton.dev", "custom_domain": true }

@@ -42,22 +42,11 @@ const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-// Project filters
-const filters = document.querySelectorAll(".filter");
-const projects = document.querySelectorAll(".project");
-
-filters.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const value = btn.dataset.filter;
-    filters.forEach((b) => {
-      const active = b === btn;
-      b.classList.toggle("is-active", active);
-      b.setAttribute("aria-pressed", String(active));
-    });
-    projects.forEach((p) => {
-      p.hidden = value !== "all" && p.dataset.category !== value;
-    });
-  });
+// Email link, assembled here so the address isn't in the HTML for scrapers
+document.querySelectorAll(".js-email").forEach((el) => {
+  const address = `${el.dataset.user}@${el.dataset.domain}`;
+  el.href = `mailto:${address}`;
+  el.textContent = address;
 });
 
 // Highlight the nav link for the section in view

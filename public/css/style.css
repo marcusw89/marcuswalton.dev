@@ -121,18 +121,6 @@ img { max-width: 100%; display: block; }
 
 /* Sections */
 .section { padding-top: 72px; padding-bottom: 72px; }
-.section-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
-.section-head h2 { margin: 0; }
-
-.filters { display: flex; flex-wrap: wrap; gap: 8px; }
-.filter {
-  font: inherit; font-size: .9rem; font-weight: 500; cursor: pointer;
-  background: transparent; color: var(--muted);
-  border: 1px solid var(--border); border-radius: 999px; padding: 6px 16px;
-}
-.filter:hover { color: var(--text); }
-.filter.is-active { background: var(--text); color: var(--bg); border-color: var(--text); }
-
 /* Projects */
 .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 28px; }
 .project {
@@ -141,7 +129,6 @@ img { max-width: 100%; display: block; }
   transition: transform .2s, box-shadow .2s;
 }
 .project:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -20px rgb(0 0 0 / .25); }
-.project[hidden] { display: none; }
 
 .thumb {
   aspect-ratio: 16 / 10; width: 100%; object-fit: cover;
@@ -292,3 +279,28 @@ img { max-width: 100%; display: block; }
 .case-facts dt { font-size: .8rem; color: var(--muted); }
 .case-facts dd { margin: 2px 0 0; font-weight: 600; line-height: 1.4; }
 .case-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 48px; }
+
+/* Diagram thumbnail on a project card */
+.thumb-diagram { display: grid; place-items: center; }
+.thumb-diagram svg { width: 100%; height: 100%; }
+.thumb-diagram .box rect { fill: rgb(255 255 255 / .88); }
+.thumb-diagram .vm rect { fill: hsl(var(--h1) 60% 55%); }
+.thumb-diagram .arrow { fill: none; stroke: #fff; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.thumb-diagram text { font-family: var(--font-sans); }
+.thumb-diagram .label { font-size: 15px; font-weight: 700; fill: #1b1b1f; }
+.thumb-diagram .sub { font-size: 10px; fill: #4a4a55; }
+.thumb-diagram .sub.light { fill: #fff; font-size: 12px; font-weight: 600; }
+.thumb-diagram .count { font-family: var(--font-serif); font-size: 20px; font-weight: 600; fill: #fff; }
+
+/* Diagram figure on case study pages (follows the light/dark theme) */
+.case-figure { margin: 40px 0 0; }
+.case-figure svg { width: 100%; height: auto; display: block; }
+.case-figure figcaption { margin-top: 10px; font-size: .9rem; color: var(--muted); }
+.case-figure .panel { fill: var(--surface); stroke: var(--border); stroke-width: 1.5; }
+.case-figure .vm { fill: color-mix(in srgb, var(--muted) 35%, transparent); }
+.case-figure .vm.new { fill: var(--accent); }
+.case-figure .arrow { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.case-figure text { font-family: var(--font-sans); fill: var(--text); }
+.case-figure .title { font-size: 17px; font-weight: 700; }
+.case-figure .note { font-size: 13px; fill: var(--muted); }
+.case-figure .count { font-family: var(--font-serif); font-size: 26px; font-weight: 600; fill: var(--accent); }
