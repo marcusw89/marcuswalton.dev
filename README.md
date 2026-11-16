@@ -7,7 +7,6 @@ A personal portfolio site in plain HTML/CSS/JS, with no build step or dependenci
 ```
 src/index.js                  Worker: redirects www to the main domain, adds security headers and analytics, serves public/
 wrangler.jsonc                Cloudflare config (domains, assets, analytics token)
-.github/workflows/uptime.yml  Checks every 30 minutes that the site is up
 public/                       Everything that gets published
   index.html                  The page
   work/memset-migration.html  Case study (served at /work/memset-migration)
@@ -49,7 +48,3 @@ Build logs are on the Worker's **Deployments** page in the Cloudflare dashboard.
 - **Security headers**: the Content-Security-Policy in `src/index.js` only allows files from this site plus Cloudflare Web Analytics. If you add anything from another domain (analytics, embeds, external images), add that domain to the policy.
 - **Email address**: kept out of the HTML so scrapers can't read it. `js/main.js` builds the link from `data-user` and `data-domain` on the contact button.
 - **Analytics**: Cloudflare Web Analytics, which is cookie-free. Put the site token in `CF_ANALYTICS_TOKEN` in `wrangler.jsonc`; leave it empty to turn analytics off.
-
-## Uptime check
-
-`.github/workflows/uptime.yml` runs every 30 minutes on GitHub Actions. It checks the main pages, the CV and the www redirect. If a check fails the run fails, and GitHub emails you. You can also run it by hand from the repo's **Actions** tab. GitHub pauses scheduled workflows after 60 days with no commits to the repo, and emails you before it does; re-enable it from the Actions tab.

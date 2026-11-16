@@ -142,8 +142,8 @@
           <div class="thumb thumb-icon" style="--h1: 190; --h2: 230;" aria-hidden="true">{ }</div>
           <div class="project-body">
             <h3>How this site runs</h3>
-            <p>This site is plain HTML, CSS and JavaScript with no build step, served from Cloudflare's edge by a small Worker. The Worker redirects www to the main domain and adds security headers (a strict Content-Security-Policy, HSTS, nosniff) to every response. Pushing to GitHub deploys it automatically, and a scheduled GitHub Actions job checks every 30 minutes that the site is up. Fonts are self-hosted and nothing on the site sets cookies.</p>
-            <ul class="tags"><li>Cloudflare Workers</li><li>GitHub Actions</li><li>CSP &amp; HSTS</li><li>No build step</li></ul>
+            <p>This site is plain HTML, CSS and JavaScript with no build step, served from Cloudflare's edge by a small Worker. The Worker redirects www to the main domain and adds security headers (a strict Content-Security-Policy, HSTS, nosniff) to every response. Pushing to GitHub deploys it automatically, and Cloudflare's bot protection filters automated traffic before it reaches the site. Fonts are self-hosted and nothing on the site sets cookies.</p>
+            <ul class="tags"><li>Cloudflare Workers</li><li>Bot protection</li><li>CSP &amp; HSTS</li><li>No build step</li></ul>
             <p class="project-links"><a href="https://github.com/marcusw89/marcuswalton.dev">View the source</a></p>
           </div>
         </article>
