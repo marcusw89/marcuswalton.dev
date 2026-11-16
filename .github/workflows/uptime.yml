@@ -25,6 +25,8 @@ jobs:
               echo "OK    $got  $url"
             else
               echo "FAIL  $got (expected $want)  $url"
+              # Show who answered and whether Cloudflare challenged the request.
+              curl -sI --max-time 20 "$url" | grep -iE '^(server|cf-mitigated|cf-ray|location):' | sed 's/^/      /'
               fail=1
             fi
           }
