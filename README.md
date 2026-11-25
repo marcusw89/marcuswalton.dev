@@ -10,6 +10,7 @@ wrangler.jsonc                Cloudflare config (domains, assets, analytics toke
 public/                       Everything that gets published
   index.html                  The page
   work/memset-migration.html  Case study (served at /work/memset-migration)
+  work/linux-vault.html       How the Linux Command Vault is built (served at /work/linux-vault)
   404.html                    Not-found page
   css/style.css               Styles (light/dark follows the system setting, via CSS variables)
   js/main.js                  Mobile nav, email link, scroll effects
@@ -47,4 +48,7 @@ Build logs are on the Worker's **Deployments** page in the Cloudflare dashboard.
 - **Colors and fonts**: CSS variables at the top of `public/css/style.css`.
 - **Security headers**: the Content-Security-Policy in `src/index.js` only allows files from this site plus Cloudflare Web Analytics. If you add anything from another domain (analytics, embeds, external images), add that domain to the policy.
 - **Email address**: kept out of the HTML so scrapers can't read it. `js/main.js` builds the link from `data-user` and `data-domain` on the contact button.
+- **Vault numbers**: elements with `data-vault-stat="commands|playbooks|guides"` (on the homepage and `/work/linux-vault`) are filled in by the Worker from `linux.marcuswalton.dev/stats.json`, read through the `VAULT` service binding to the `linux-vault` Worker and rounded down to the nearest ten ("450+"). The numbers written in the HTML are the fallback, so update them now and then. A new page that uses them must be added to `STATS_PAGES` in `src/index.js`. In `wrangler dev` the binding only connects if the vault's `wrangler dev` is running too (use a different `--port` and `--inspector-port`).
+- **Caching**: fonts are cached for a year as immutable, and the icons and `og.png` for a week (`CACHE_RULES` in `src/index.js`). If you replace a font, give it a new file name. Everything else revalidates on every visit.
+- **Sitemap**: update `<lastmod>` in `public/sitemap.xml` when a page changes, and add new pages.
 - **Analytics**: Cloudflare Web Analytics, which is cookie-free. Put the site token in `CF_ANALYTICS_TOKEN` in `wrangler.jsonc`; leave it empty to turn analytics off.

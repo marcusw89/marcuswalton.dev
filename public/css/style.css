@@ -147,6 +147,7 @@ img { max-width: 100%; display: block; }
 .project-links { margin-top: auto; padding-top: 6px; }
 .project-body .project-links a { font-weight: 600; text-decoration: none; font-size: .95rem; color: var(--accent); }
 .project-links a::after { content: " →"; }
+.project-links a + a { margin-left: 18px; }
 .project-links a:hover { text-decoration: underline; }
 
 .tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
@@ -300,6 +301,10 @@ img { max-width: 100%; display: block; }
 .case-figure .vm { fill: color-mix(in srgb, var(--muted) 35%, transparent); }
 .case-figure .vm.new { fill: var(--accent); }
 .case-figure .arrow { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+/* Wide diagrams keep a readable size on phones and scroll sideways in their own box. */
+.figure-scroll { overflow-x: auto; }
+.figure-scroll svg { min-width: 600px; }
+.case-figure .arrow.private { stroke: var(--muted); stroke-dasharray: 4 6; }
 .case-figure text { font-family: var(--font-sans); fill: var(--text); }
 .case-figure .title { font-size: 17px; font-weight: 700; }
 .case-figure .note { font-size: 13px; fill: var(--muted); }

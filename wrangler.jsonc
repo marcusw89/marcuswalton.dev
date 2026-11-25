@@ -10,6 +10,9 @@
     // Run the Worker before serving files so www and .co.uk requests can be redirected.
     "run_worker_first": true
   },
+  // The vault's Worker, for its note counts (src/index.js). Called directly, not over the internet,
+  // so bot protection on linux.marcuswalton.dev doesn't get in the way.
+  "services": [{ "binding": "VAULT", "service": "linux-vault" }],
   "vars": {
     // Cloudflare Web Analytics site token (dashboard > Analytics & Logs > Web Analytics).
     // Leave empty to turn analytics off.

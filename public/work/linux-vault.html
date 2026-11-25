@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How the Linux Command Vault is built — Marcus Walton</title>
+  <meta name="description" content="How the Linux Command Vault works: an Obsidian vault with a Python generator, an allowlist that keeps private notes private, a Quartz build on Cloudflare, and examples tested in lab containers and VMs.">
+  <link rel="canonical" href="https://marcuswalton.dev/work/linux-vault">
+  <meta name="theme-color" content="#3b4fe0">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://marcuswalton.dev/work/linux-vault">
+  <meta property="og:title" content="How the Linux Command Vault is built">
+  <meta property="og:description" content="An Obsidian vault, a Python generator, a publishing allowlist and a lab for testing every example.">
+  <meta property="og:image" content="https://marcuswalton.dev/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="/" class="logo">Marcus Walton</a>
+      <a href="/#work" class="back-link">← All work</a>
+    </div>
+  </header>
+
+  <main id="main" class="container case-study">
+    <p class="eyebrow">Project · Linux Command Vault</p>
+    <h1>How the Linux Command Vault is built</h1>
+    <p class="lede">The vault is the field guide I keep for Linux administration: a cheat sheet for every command I use, playbooks for when things break, and longer guides. I write it in Obsidian, a generator does the repetitive parts, and every push publishes it to <a href="https://linux.marcuswalton.dev">linux.marcuswalton.dev</a>.</p>
+
+    <dl class="case-facts">
+      <div><dt>Commands</dt><dd><span data-vault-stat="commands">450+</span> cheat sheets</dd></div>
+      <div><dt>Playbooks</dt><dd><span data-vault-stat="playbooks">220+</span> incident runbooks</dd></div>
+      <div><dt>Guides</dt><dd data-vault-stat="guides">170+</dd></div>
+      <div><dt>Built with</dt><dd>Obsidian, Python, Quartz, Cloudflare Workers</dd></div>
+    </dl>
+
+    <figure class="case-figure">
+      <div class="figure-scroll" tabindex="0" role="group" aria-label="Pipeline diagram, scrolls sideways on small screens">
+      <svg viewBox="0 0 720 260" role="img" aria-labelledby="fig-title">
+        <title id="fig-title">The publishing pipeline: notes in the Obsidian vault go through an allowlist, are built with Quartz, and are served by a Cloudflare Worker. Private notes stay behind.</title>
+        <rect class="panel" x="10" y="30" width="140" height="150" rx="14"/>
+        <rect class="panel" x="200" y="30" width="140" height="150" rx="14"/>
+        <rect class="panel" x="390" y="30" width="140" height="150" rx="14"/>
+        <rect class="panel" x="580" y="30" width="130" height="150" rx="14"/>
+        <text class="title" x="80" y="72" text-anchor="middle">Obsidian</text>
+        <text class="note" x="80" y="100" text-anchor="middle">hand-written notes</text>
+        <text class="note" x="80" y="120" text-anchor="middle">+ Python generator</text>
+        <text class="note" x="80" y="140" text-anchor="middle">→ git push</text>
+        <text class="title" x="270" y="72" text-anchor="middle">Allowlist</text>
+        <text class="note" x="270" y="100" text-anchor="middle">only listed folders</text>
+        <text class="note" x="270" y="120" text-anchor="middle">are copied; links</text>
+        <text class="note" x="270" y="140" text-anchor="middle">are rewritten</text>
+        <text class="title" x="460" y="72" text-anchor="middle">Quartz</text>
+        <text class="note" x="460" y="100" text-anchor="middle">pinned release,</text>
+        <text class="note" x="460" y="120" text-anchor="middle">no CDN scripts,</text>
+        <text class="note" x="460" y="140" text-anchor="middle">CSP hashes</text>
+        <text class="title" x="645" y="72" text-anchor="middle">Worker</text>
+        <text class="note" x="645" y="100" text-anchor="middle">static files +</text>
+        <text class="note" x="645" y="120" text-anchor="middle">security</text>
+        <text class="note" x="645" y="140" text-anchor="middle">headers</text>
+        <path class="arrow" d="M156 105 H192 M184 97 L194 105 L184 113"/>
+        <path class="arrow" d="M346 105 H382 M374 97 L384 105 L374 113"/>
+        <path class="arrow" d="M536 105 H572 M564 97 L574 105 L564 113"/>
+        <path class="arrow private" d="M270 186 V214"/>
+        <text class="note" x="270" y="236" text-anchor="middle">private notes and man pages stay in the vault</text>
+        <text class="count" x="645" y="226" text-anchor="middle">~2 min</text>
+        <text class="note" x="645" y="246" text-anchor="middle">push to live</text>
+      </svg>
+      </div>
+      <figcaption>From a note in Obsidian to the public site. Only the allowlist decides what gets published.</figcaption>
+    </figure>
+
+    <h2>Why build it this way</h2>
+    <p>Most of what a sysadmin needs at 3am is the right command with the right flags, and the order to check things in. I wanted that in one place I could search offline, link together and keep up to date, rather than spread over bookmarks and shell history. Obsidian gives me plain Markdown files in a Git repository, so the vault has no lock-in and every change has a history.</p>
+    <p>Writing hundreds of cheat sheets by hand, and keeping their indexes in step, would be slow and easy to get wrong. So the structured parts are generated and the parts that need judgement are written by hand.</p>
+
+    <h2>Generated where it's repetitive, hand-written where it matters</h2>
+    <ul class="points">
+      <li><strong>Command notes come from data.</strong> Each command is an entry in a Python data file: syntax, key options, real examples, gotchas and related commands. A generator turns those into notes with a consistent layout, links each one to its man page, and rebuilds the category maps and the counts on the home page.</li>
+      <li><strong>Playbooks start from the symptom.</strong> Each one begins with what you actually see (a full disk, a service that won't start, a certificate that expired), lists the likely causes, and gives the commands to confirm and fix each one. They follow a shared template so they read the same way under pressure.</li>
+      <li><strong>Guides go deeper.</strong> Kernel tuning, Proxmox and KVM, WireGuard, Kubernetes, Ceph, database replication and failover, mail servers, security hardening, and scripting in Bash, Python, C, Go and Rust.</li>
+      <li><strong>The generator never overwrites hand-written notes.</strong> It only owns the files it creates and a few marked sections, so regenerating is always safe.</li>
+    </ul>
+
+    <h2>Publishing without leaking anything</h2>
+    <p>The vault also holds notes that are only for me, such as records of my own systems, and the man pages, which belong to other projects under their own licences. The website must never include them, even by accident.</p>
+    <ul class="points">
+      <li><strong>An allowlist, not a blocklist.</strong> The build copies only the folders it's told to publish. A new folder stays private until I add it to the list, so forgetting something fails safe.</li>
+      <li><strong>Links are rewritten on the way out.</strong> Links to man page notes become links to the online man page, and links to anything unpublished become plain text, so the site has no dead links and gives no hints about what's held back.</li>
+      <li><strong>Private records never reach Git.</strong> The folders for my own systems are ignored by Git, so only their empty structure is in the repository.</li>
+    </ul>
+
+    <h2>The build</h2>
+    <p>Every push to the repository triggers a Cloudflare Workers build, and the site is live about two minutes later. The build uses <a href="https://quartz.jzhao.xyz/">Quartz</a> pinned to an exact release and commit, so an upstream change can't alter the site without me noticing. The graph view's libraries are downloaded once at pinned versions, checked against SHA-256 checksums and served from the site itself rather than a CDN. The build also hashes every inline script, so the Content-Security-Policy can allow exactly those scripts and nothing else.</p>
+    <p>A small Cloudflare Worker serves the result with the same security headers as this site. The build also writes the vault's note counts to a small JSON file, which this site's Worker reads to keep the numbers on the homepage up to date.</p>
+
+    <h2>Testing the examples</h2>
+    <p>A cheat sheet with a wrong flag is worse than none, so most examples are run in a throwaway lab before they go in: Podman containers for services, and QEMU virtual machines where a container can't do the job. A few examples:</p>
+    <ul class="points">
+      <li><strong>Kubernetes and Helm</strong> against k3s running inside rootless Podman, which needed its own set of kubelet and cgroup workarounds that went into the notes as well.</li>
+      <li><strong>Proxmox VE</strong> installed unattended from an answer file into a nested two-node cluster, to test the clustering and HA commands.</li>
+      <li><strong>OPNsense</strong> booted in QEMU and driven over its serial console by a short Python script.</li>
+      <li><strong>Mail</strong>: two Postfix and Dovecot servers with rspamd, plus a local DNS server holding the MX, SPF, DKIM, DMARC and reverse records, to test delivery and authentication end to end.</li>
+    </ul>
+    <p>The surprises are often the most useful part. Debian loads its ModSecurity settings before the Core Rule Set, so rule exclusions only work in specific files. rspamd caches SPF and DKIM results, so it has to be restarted after a DNS change. Lessons like these end up in the notes as gotchas.</p>
+    <p>Where something couldn't be tested, the note says so. Real hardware faults can't be reproduced in a container, for example, so the hardware notes are checked for command syntax and output only. Labs are torn down when the work is done.</p>
+
+    <h2>What I took from it</h2>
+    <p>Documentation stays useful when it's cheap to keep up to date. Generating the structured parts, testing the examples and automating the publishing mean that adding a note is the only manual step. The private-by-default publishing step was worth getting right early: it's what lets me keep everything in one vault.</p>
+
+    <p class="case-cta"><a href="https://linux.marcuswalton.dev" class="button">Browse the vault</a> <a href="/" class="button button-ghost">Back to the homepage</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Marcus Walton</span>
+      <a href="#main">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

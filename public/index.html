@@ -36,7 +36,7 @@
     "jobTitle": "Technical Support Engineer",
     "worksFor": { "@type": "Organization", "name": "iomart" },
     "address": { "@type": "PostalAddress", "addressRegion": "Hampshire", "addressCountry": "GB" },
-    "knowsAbout": ["Linux system administration", "Platform migrations", "Server infrastructure", "OnApp", "Backup and disaster recovery"],
+    "knowsAbout": ["Linux system administration", "Platform migrations", "Server infrastructure", "OnApp", "Backup and disaster recovery", "Bash", "Zabbix", "Nagios", "Dell PowerEdge", "VPN", "Firewalls", "Debian", "Ubuntu", "CentOS"],
     "sameAs": [
       "https://www.linkedin.com/in/marcuswalton1/",
       "https://github.com/marcusw89"
@@ -114,10 +114,10 @@
           <div class="thumb thumb-icon" style="--h1: 265; --h2: 300;" aria-hidden="true">~$</div>
           <div class="project-body">
             <h3>Linux Command Vault</h3>
-            <p class="stat"><strong>450+</strong> commands, <strong>220+</strong> incident playbooks, <strong>170+</strong> guides</p>
+            <p class="stat"><strong data-vault-stat="commands">450+</strong> commands, <strong data-vault-stat="playbooks">220+</strong> incident playbooks, <strong data-vault-stat="guides">170+</strong> guides</p>
             <p>The field guide I keep for Linux administration, written in Obsidian and published as a website: a cheat sheet for every command I use, step-by-step playbooks for when things break, and guides from kernel tuning, Proxmox and KVM to WireGuard, Kubernetes, Ceph, database failover, mail servers and security hardening, and scripting in Bash, Python, C, Go and Rust. Most examples are tested in lab containers and VMs before they go in.</p>
             <ul class="tags"><li>Linux</li><li>Troubleshooting</li><li>Scripting</li><li>Obsidian</li></ul>
-            <p class="project-links"><a href="https://linux.marcuswalton.dev">Browse the vault</a></p>
+            <p class="project-links"><a href="https://linux.marcuswalton.dev">Browse the vault</a> <a href="/work/linux-vault">How it's built</a></p>
           </div>
         </article>
 
@@ -154,7 +154,7 @@
           <div class="project-body">
             <h3>How this site runs</h3>
             <p>This site is plain HTML, CSS and JavaScript with no build step, served from Cloudflare's edge by a small Worker. The Worker redirects www to the main domain and adds security headers (a strict Content-Security-Policy, HSTS, nosniff) to every response. Pushing to GitHub deploys it automatically, and Cloudflare's bot protection filters automated traffic before it reaches the site. Fonts are self-hosted and nothing on the site sets cookies.</p>
-            <p>The Linux Command Vault is built the other way round: the notes live in an Obsidian vault, and a Python generator writes the command pages and indexes. On every push, Cloudflare builds it with Quartz into a static site, publishing only an allowlist of folders so private notes never leave the vault, and serves it from a Worker with the same headers, including hashes for each inline script in the CSP.</p>
+            <p>The Linux Command Vault is built the other way round: the notes live in an Obsidian vault, and a Python generator writes the command pages and indexes. On every push, Cloudflare builds it with Quartz into a static site, publishing only an allowlist of folders so private notes never leave the vault, and serves it from a Worker with the same headers, including hashes for each inline script in the CSP. The build also publishes the vault's note counts, which this site's Worker reads to keep the numbers above up to date.</p>
             <ul class="tags"><li>Cloudflare Workers</li><li>Bot protection</li><li>CSP &amp; HSTS</li><li>No build step</li><li>Obsidian</li><li>Quartz</li></ul>
             <p class="project-links"><a href="https://github.com/marcusw89/marcuswalton.dev">View the source</a></p>
           </div>
