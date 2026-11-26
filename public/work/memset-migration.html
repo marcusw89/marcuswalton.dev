@@ -37,13 +37,15 @@
   <main id="main" class="container case-study">
     <p class="eyebrow">Case study · iomart</p>
     <h1>Migrating ~1,100 virtual servers onto OnApp</h1>
-    <p class="lede">When iomart brought Memset into the group, Memset's VPS customers were still running on Memset's own in-house hosting platform. I led the work to move that estate onto OnApp so it could be run alongside the rest of iomart's infrastructure.</p>
+    <p class="lede">When iomart brought Memset into the group, Memset's VPS customers were still running on Memset's own in-house hosting platform. I led a team of three to move that estate onto OnApp, and carried out over half of the migrations myself, so it could be run alongside the rest of iomart's infrastructure.</p>
 
     <dl class="case-facts">
       <div><dt>Scale</dt><dd>~1,100 virtual servers</dd></div>
       <div><dt>From</dt><dd>Memset's in-house VPS platform</dd></div>
       <div><dt>To</dt><dd>OnApp</dd></div>
-      <div><dt>My role</dt><dd>Led the migration</dd></div>
+      <div><dt>Timeline</dt><dd>6 months, from June 2022</dd></div>
+      <div><dt>Pace</dt><dd>50–60 servers a day</dd></div>
+      <div><dt>My role</dt><dd>Led a team of 3, did over half the migrations myself</dd></div>
     </dl>
 
     <figure class="case-figure">
@@ -65,8 +67,8 @@
         <rect class="vm new" x="508" y="174" width="22" height="14" rx="3"/><rect class="vm new" x="538" y="174" width="22" height="14" rx="3"/><rect class="vm new" x="568" y="174" width="22" height="14" rx="3"/><rect class="vm new" x="598" y="174" width="22" height="14" rx="3"/><rect class="vm new" x="628" y="174" width="22" height="14" rx="3"/><rect class="vm new" x="658" y="174" width="22" height="14" rx="3"/>
         <text class="count" x="360" y="110" text-anchor="middle">~1,100 VPSs</text>
         <path class="arrow" d="M262 135 H452 M440 123 L454 135 L440 147"/>
-        <text class="note" x="360" y="172" text-anchor="middle">planned batches,</text>
-        <text class="note" x="360" y="190" text-anchor="middle">validated after each move</text>
+        <text class="note" x="360" y="172" text-anchor="middle">50–60 a day,</text>
+        <text class="note" x="360" y="190" text-anchor="middle">hot copy, then cold sync</text>
       </svg>
       <figcaption>The VPS estate moved from Memset's own platform onto OnApp, batch by batch.</figcaption>
     </figure>
@@ -79,16 +81,39 @@
     <ul class="points">
       <li><strong>Inventory first.</strong> Catalogued the existing estate: which servers existed, what they ran, which customers owned them, and which ones needed special handling.</li>
       <li><strong>Prove the process on a small batch.</strong> Migrated a first group to shake out problems with the procedure before scaling it up.</li>
-      <li><strong>Move in planned batches.</strong> Worked through the estate in scheduled windows rather than all at once, so any issue stayed small and contained.</li>
+      <li><strong>Move in planned batches.</strong> Worked through the estate at 50–60 servers a day over six months, rather than all at once, so any issue stayed small and contained.</li>
       <li><strong>Keep customers informed.</strong> Customers were told what was happening and when, so a migration window never came as a surprise.</li>
       <li><strong>Validate on the other side.</strong> Checked each server after the move (booting, networking, services and data) before treating it as done.</li>
     </ul>
 
+    <h2>How each server moved</h2>
+    <p>Each migration was started by hand and carried out by a script, so every server went through the same steps:</p>
+    <ol class="points">
+      <li><strong>Prepare the source.</strong> The script first brought the server's features up to date, so it would run correctly on the new platform.</li>
+      <li><strong>Create the new VM.</strong> It built a matching virtual machine on OnApp to receive the data.</li>
+      <li><strong>Hot copy.</strong> With the original server still running, rsync copied its data across, so the customer stayed online for the bulk of the transfer.</li>
+      <li><strong>Cold sync.</strong> The original server was then shut down and a final rsync copied anything that had changed, so nothing written during the hot copy was lost.</li>
+      <li><strong>Verify and cut over.</strong> Once the new server was confirmed to boot, its IP address and firewall rules were moved across from the old one.</li>
+    </ol>
+    <p>Because the bulk of the data moved while the server was still live, each customer was only offline for the final sync and the IP move: 10–20 minutes on average.</p>
+
+    <h2>When a move failed</h2>
+    <p>The script assumed a server used the default configuration, and most did. Around 2–3 a week did not, and their migrations failed. Because the original server was left untouched until the cutover, each of those was rolled back by bringing the original back up, so the customer was returned to a working server rather than left with a broken one. The server was then fixed and migrated again at a later date.</p>
+
+    <h2>Why it was built this way</h2>
+    <ul class="points">
+      <li><strong>Downtime depended on change, not size.</strong> rsync only sends what differs, so the cold sync copied just the files that changed during the hot copy. A large server with little activity was offline for about as long as a small one.</li>
+      <li><strong>The old server stayed intact until the end.</strong> Copying only reads from the original, and nothing moved away from it until the new VM had booted. That is what made the 2–3 failed moves a week simple to roll back.</li>
+      <li><strong>Customers kept their address.</strong> Moving the IP rather than assigning a new one meant customers had nothing to update. Where DNS changes were needed for domains hosted with us, our team made them. Moving the firewall rules with it kept their access rules exactly as they were.</li>
+      <li><strong>One script, every server.</strong> Running the same steps every time made the 1,000th migration as predictable as the first, and made a failure easy to spot because it broke a known pattern.</li>
+    </ul>
+
     <h2>The result</h2>
-    <p>Around 1,100 customer virtual servers were moved off the legacy platform and onto OnApp, bringing Memset's VPS customers into iomart's systems and leaving one fewer bespoke platform to maintain.</p>
+    <p>Around 1,100 customer virtual servers were moved off the legacy platform and onto OnApp in six months, each offline for 10–20 minutes on average. That brought Memset's VPS customers into iomart's systems and left one fewer bespoke platform to maintain. Customers kept their IP addresses and firewall rules, so for most of them the move came down to a short planned outage and nothing to reconfigure.</p>
 
     <h2>What I took from it</h2>
     <p>Large migrations are mostly planning, communication and checking, with the actual data movement being the easy part. A repeatable, tested procedure is what makes the thousandth server as uneventful as the tenth.</p>
+    <p>Splitting the copy into a live pass and a short final pass is the single choice that did most for customers: it kept each outage to the final sync rather than the whole transfer, 10–20 minutes instead of hours. Keeping the original untouched until the cutover meant every move had a way back, which made it safe to keep up a steady pace day after day.</p>
 
     <p class="case-cta"><a href="/#contact" class="button">Get in touch</a> <a href="/" class="button button-ghost">Back to the homepage</a></p>
   </main>
