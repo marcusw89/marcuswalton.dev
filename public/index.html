@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Marcus Walton — Technical Support &amp; Infrastructure Engineer</title>
+  <title>Marcus Walton — Technical Support Engineer</title>
   <meta name="description" content="Marcus Walton is a technical support engineer working on platform migrations, server builds and upgrades, Linux system administration and infrastructure engineering.">
   <link rel="canonical" href="https://marcuswalton.dev/">
   <meta name="theme-color" content="#3b4fe0">
@@ -13,7 +13,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://marcuswalton.dev/">
-  <meta property="og:title" content="Marcus Walton — Technical Support &amp; Infrastructure Engineer">
+  <meta property="og:title" content="Marcus Walton — Technical Support Engineer">
   <meta property="og:description" content="Linux server infrastructure, platform migrations, server builds and upgrades.">
   <meta property="og:image" content="https://marcuswalton.dev/og.png">
   <meta property="og:image:width" content="1200">
@@ -115,7 +115,7 @@
           <div class="project-body">
             <h3>Linux Command Vault</h3>
             <p class="stat"><strong data-vault-stat="commands">450+</strong> commands, <strong data-vault-stat="playbooks">220+</strong> incident playbooks, <strong data-vault-stat="guides">170+</strong> guides</p>
-            <p>The field guide I keep for Linux administration, written in Obsidian and published as a website: a cheat sheet for every command I use, step-by-step playbooks for when things break, and guides from kernel tuning, Proxmox and KVM to WireGuard, Kubernetes, Ceph, database failover, mail servers and security hardening, and scripting in Bash, Python, C, Go and Rust. Most examples are tested in lab containers and VMs before they go in.</p>
+            <p>The field guide I keep for Linux administration, written in Obsidian and published as a website: a cheat sheet for every command I use, playbooks for when things break, and longer guides. Most examples are tested in lab containers and VMs before they go in.</p>
             <ul class="tags"><li>Linux</li><li>Troubleshooting</li><li>Scripting</li><li>Obsidian</li></ul>
             <p class="project-links"><a href="https://linux.marcuswalton.dev">Browse the vault</a> <a href="/work/linux-vault">How it's built</a></p>
           </div>
@@ -153,8 +153,8 @@
           <div class="thumb thumb-icon" style="--h1: 190; --h2: 230;" aria-hidden="true">{ }</div>
           <div class="project-body">
             <h3>How this site runs</h3>
-            <p>This site is plain HTML, CSS and JavaScript with no build step, served from Cloudflare's edge by a small Worker. The Worker redirects www to the main domain and adds security headers (a strict Content-Security-Policy, HSTS, nosniff) to every response. Pushing to GitHub deploys it automatically, and Cloudflare's bot protection filters automated traffic before it reaches the site. Fonts are self-hosted and nothing on the site sets cookies.</p>
-            <p>The Linux Command Vault is built the other way round: the notes live in an Obsidian vault, and a Python generator writes the command pages and indexes. On every push, Cloudflare builds it with Quartz into a static site, publishing only an allowlist of folders so private notes never leave the vault, and serves it from a Worker with the same headers, including hashes for each inline script in the CSP. The build also publishes the vault's note counts, which this site's Worker reads to keep the numbers above up to date.</p>
+            <p>This site is plain HTML, CSS and JavaScript with no build step, served from Cloudflare's edge by a small Worker. The Worker redirects www and the .co.uk domains to marcuswalton.dev and adds security headers (a strict Content-Security-Policy, HSTS, nosniff) to every response. Pushing to GitHub deploys it automatically, and Cloudflare's bot protection filters automated traffic before it reaches the site. Fonts are self-hosted and nothing on the site sets cookies.</p>
+            <p>The Linux Command Vault takes the opposite approach, with a generator and a Quartz build: <a href="/work/linux-vault">see how it's built</a>.</p>
             <ul class="tags"><li>Cloudflare Workers</li><li>Bot protection</li><li>CSP &amp; HSTS</li><li>No build step</li><li>Obsidian</li><li>Quartz</li></ul>
             <p class="project-links"><a href="https://github.com/marcusw89/marcuswalton.dev">View the source</a></p>
           </div>
@@ -166,8 +166,9 @@
     <section id="about" class="section container about">
       <div>
         <h2>About me</h2>
-        <p>I'm a system administrator at heart, working as a technical support engineer at iomart since 2021. In a two-person team I support over 3,000 customers, keep the platform at 99.99% uptime, and have helped bring ticket times down by 20%. I also led the migration of Memset's VPS platform onto OnApp, moving around 1,100 virtual servers.</p>
+        <p>I'm a system administrator at heart, working as a technical support engineer at iomart since 2021. Most of my day is working out why a Linux server is misbehaving and fixing it so it stays fixed, and the bigger projects, like moving Memset's VPS platform onto OnApp, are the parts I enjoy most.</p>
         <p>Before that I spent five years as a freelance IT consultant, designing secure networks, running VPNs and firewalls, and building backup and disaster recovery plans for clients. I care about uptime, security and automating the repetitive parts of the job.</p>
+        <p>Outside work I run a home lab, where I test everything that goes into my <a href="https://linux.marcuswalton.dev">Linux Command Vault</a>, from Proxmox clusters and Ceph to mail servers and firewalls.</p>
         <h3 class="skills-title">Skills</h3>
         <dl class="skill-groups">
           <div><dt>Operating systems</dt><dd><ul class="tags"><li>CentOS</li><li>Ubuntu</li><li>Debian</li><li>Arch Linux</li><li>Windows Server</li></ul></dd></div>
